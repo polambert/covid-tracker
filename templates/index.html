@@ -1,0 +1,58 @@
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>COVID-19 Stats</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="stylesheet" href="/assets/style.css">
+		<script type="text/javascript" src="/assets/jquery.js"></script>
+		<script type="text/javascript" src="/assets/jquery.floatThead.js"></script>
+		<script type="text/javascript" src="/assets/sticky-table-headers.js"></script>
+		<script type="text/javascript" src="/assets/sorttable.js"></script>
+		<script type="text/javascript" src="/assets/main.js"></script>
+	</head>
+	<body onload="onload()">
+		<div class="center">
+			<!-- Old header -->
+			<div id="header-wrapper">
+				<span id="page-header">COVID-19 Statistics</span>
+				<br id="header-break">
+				<span id="minutes-ago">from {{ .MinutesAgo }} minutes ago</span>
+			</div>
+
+			<table id="main-table" class="sortable">
+				<thead class="unselectable">
+					<tr>
+						<th>Country</th>
+						<th>Cases</th>
+						<th class="mobile-hide">Cases Today</th>
+						<th>Deaths</th>
+						<th class="mobile-hide">Deaths Today</th>
+						<th class="mobile-hide">Tests</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{ range .Data }}
+					<tr>
+						<td>{{ .Country }}</td>
+						<td>{{ .Cases }}</td>
+						<td class="mobile-hide">{{ .TodayCases }}</td>
+						<td>{{ .Deaths }}</td>
+						<td class="mobile-hide">{{ .TodayDeaths }}</td>
+						<td class="mobile-hide">{{ .TotalTests }}</td>
+					</tr>
+					{{ end }}
+				</tbody>
+			</table>
+
+			<div id="footer-container">
+				<p>This data is self-reported by the governments of the countries above.</p>
+				<p>Data is sourced from <a href="https://coronavirus-19-api.herokuapp.com/">https://coronavirus-19-api.herokuapp.com/</a>.</p>
+			</div>
+		</div>
+	</body>
+</html>
